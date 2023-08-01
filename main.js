@@ -72,16 +72,18 @@ const students = [
   ]
 
   const app = document.querySelector('#app')
+  const form = document.querySelector('#form-container')
+  const buttons = document.querySelector('#btn-row')
   
   const renderToDom = (divId, html) => {
     const targetedDiv = document.querySelector(divId)
     targetedDiv.innerHTML = html
   }
    
-  const sortingHat = () => {
-    let domString = ''
+  function sortingHat() {
+  let domString = ''
 
-    domString += `<div class="card">
+  domString += `<div class="card">
     <div class="card-header">
       Greetings!
     </div>
@@ -93,7 +95,7 @@ const students = [
   </div>`
 
   renderToDom("#app", domString)
-  }
+}
 
   function sortingForm() {
   domString = ''
@@ -106,15 +108,61 @@ const students = [
 
   renderToDom('#form-container', domString)
 }
- 
-//Event Listeners
-const eventListeners = () => {  
- app.addEventListener('click', (e) => {
-  if (e.target.id === 'formBtn'){
-    sortingForm()
+
+function studentsOnDom(array) {
+  let domString = ''
+  for (const student of array) {
+    domString += `<div class="card" style="width: 18rem;">
+    <img src="${student.houseImg}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">${student.name}</h5>
+      <p class="card-text">${student.house}</p>
+      <a href="#" class="btn btn-primary">Expel</a>
+    </div>
+  </div>`
   }
 
- })
+  renderToDom('#card-container', domString)
+}
+
+studentsOnDom(students)
+
+function filterByHouse(house) {
+  const filteredStudents = students.filter((student) => student.house === house)
+  renderToDom("#card-container", filteredStudents)
+}
+ 
+//Event Listeners
+function eventListeners() {
+
+  app.addEventListener('click', (e) => {
+    if (e.target.id === 'formBtn') {
+      sortingForm()
+    }
+  })
+
+  buttons.addEventListener('click', (e) => {
+    if (e.target.id === 'gryff-btn') {
+      const gryffHouse = students.filter((student) => student.house === 'Gryffindor')
+      studentsOnDom(gryffHouse)
+    }
+    if (e.target.id === 'raven-btn') {
+      const ravenHouse = students.filter((student) => student.house === 'Ravenclaw')
+      studentsOnDom(ravenHouse)
+    }
+    if (e.target.id === 'slyth-btn') {
+      const slythStudents = students.filter((student) => student.house === 'Slytherin')
+      studentsOnDom(slythStudents)
+    }
+    if (e.target.id === 'huff-btn') {
+      const huffStudents = students.filter((student) => student.house === 'Hufflepuff')
+      studentsOnDom(huffStudents) 
+    }
+    if (e.target.id === 'death-btn') {
+      const deathEaters = students.filter((student) => student.isExpelled === true)
+      studentsOnDom(deathEaters)
+    }
+  })
 
 }
   
