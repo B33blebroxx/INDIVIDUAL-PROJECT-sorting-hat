@@ -18,3 +18,8 @@ body {
   color: white;
   padding-top: 12px;
 }
+
+#card-container {
+  display: flex;
+  flex-flow: row wrap;
+}

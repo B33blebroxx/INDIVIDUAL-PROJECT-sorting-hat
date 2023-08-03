@@ -71,15 +71,22 @@ const students = [
   }
   ]
 
+  //Stored variables for DOM manipulation
   const app = document.querySelector('#app')
-  const form = document.querySelector('#form-container')
-  const buttons = document.querySelector('#btn-row')
-  
+  const form = document.querySelector('form')
+  const houseBtns = document.querySelector('#btn-row')
+  const formBtn = document.querySelector('#form-btn')
+  const expelBtn = document.querySelector('#expel-btn')
+  const sortBtn = document.querySelector('#sort-btn')
+  const houses = ['Gryffindor', 'Slytherin', 'Ravenclaw', 'Hufflepuff']
+
+  //Renders HTML to selected div id
   const renderToDom = (divId, html) => {
     const targetedDiv = document.querySelector(divId)
     targetedDiv.innerHTML = html
   }
    
+  //Renders sorting hat card to DOM
   function sortingHat() {
   let domString = ''
 
@@ -90,25 +97,27 @@ const students = [
     <div class="card-body">
       <h5 class="card-title">Welcome To Hogwarts School of Witchcraft and Wizardry! </h5>
       <p class="card-text">I am the Sorting Hat! Please press the button to start the sorting process!</p>
-      <a href="#" id="formBtn" class="btn btn-primary">Start the Sorting! </a>
+      <a href="#" id="form-btn" class="btn btn-primary">Start the Sorting! </a>
     </div>
   </div>`
 
   renderToDom("#app", domString)
 }
 
+//Function to make sorting form appear
   function sortingForm() {
   domString = ''
 
   domString += `<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label"> Name </label>
-  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Harry Potter"><button type="submit" id="submitBtn class="btn btn-primary"> Sort! </button>
+  <input type="text" class="form-control" id="name" placeholder="Harry Potter"><button type="submit" id="sort-btn" class="btn btn-primary"> Sort! </button>
   </form>
 </div>`
 
-  renderToDom('#form-container', domString)
+  renderToDom('form', domString)
 }
 
+// Function to render student cards to the DOM
 function studentsOnDom(array) {
   let domString = ''
   for (const student of array) {
@@ -117,7 +126,7 @@ function studentsOnDom(array) {
     <div class="card-body">
       <h5 class="card-title">${student.name}</h5>
       <p class="card-text">${student.house}</p>
-      <a href="#" class="btn btn-primary">Expel</a>
+      <a href="#" id='expel-btn' class="btn btn-primary">Expel</a>
     </div>
   </div>`
   }
@@ -125,23 +134,50 @@ function studentsOnDom(array) {
   renderToDom('#card-container', domString)
 }
 
-studentsOnDom(students)
 
+//Filter Students function
 function filterByHouse(house) {
   const filteredStudents = students.filter((student) => student.house === house)
   renderToDom("#card-container", filteredStudents)
 }
+
+//Assigns random house to student
+const sortStudent = () => {
+   e.preventDefault();
+
+  const randomize = Math.floor(Math.random() * houses.length)
+
+  const newStudentObj = {
+    id: students.length + 1,
+    name: document.querySelector('#name').value,
+    house: students[randomize].house,
+    isExpelled: false,
+    houseImg: ''
+  }
  
+  students.push(newStudentObj)
+  // studentsOnDom(students)
+  console.log(students)
+
+}
+
+//Assigns house image depending on random house selection
+// const houseImg = (e) => {
+//   if (random)
+// }
+
+
+
 //Event Listeners
 function eventListeners() {
-
+  
   app.addEventListener('click', (e) => {
-    if (e.target.id === 'formBtn') {
+    if (e.target.id === 'form-btn') {
       sortingForm()
     }
   })
-
-  buttons.addEventListener('click', (e) => {
+  
+  houseBtns.addEventListener('click', (e) => {
     if (e.target.id === 'gryff-btn') {
       const gryffHouse = students.filter((student) => student.house === 'Gryffindor')
       studentsOnDom(gryffHouse)
@@ -164,13 +200,35 @@ function eventListeners() {
     }
   })
 
-}
+  form.addEventListener('submit', (e) => {
   
-//List of apps to start upon initialization
-  startApp = () => {
-    sortingHat()
-    eventListeners()
+      e.preventDefault();
 
+      const randomize = Math.floor(Math.random() * houses.length)
+    
+      const newStudentObj = {
+        id: students.length + 1,
+        name: document.querySelector('#name').value,
+        house: students[randomize].house,
+        isExpelled: false,
+        houseImg: ''
+      }
+     
+      students.push(newStudentObj)
+      studentsOnDom(students)
+      form.reset
+    
+    }
+  )
+  
+}
+
+//List of apps to start upon initialization
+startApp = () => {
+  sortingHat()
+  studentsOnDom(students)
+  eventListeners()
+  
   }
   
   startApp()
