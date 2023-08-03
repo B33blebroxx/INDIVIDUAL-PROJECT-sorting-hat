@@ -155,32 +155,6 @@ function filterByHouse(house) {
   renderToDom("#card-container", filteredStudents)
 }
 
-//Assigns random house to student
-const sortStudent = () => {
-   e.preventDefault();
-
-  const randomize = Math.floor(Math.random() * houses.length)
-
-  const newStudentObj = {
-    id: students.length + 1,
-    name: document.querySelector('#name').value,
-    house: students[randomize].house,
-    isExpelled: false,
-    houseImg: ''
-  }
- 
-  students.push(newStudentObj)
-  // studentsOnDom(students)
-  console.log(students)
-
-}
-
-// Assigns house image depending on random house selection
-// const houseImg = (e) => {
-//   if (random)
-// }
-
-
 
 //Event Listeners
 function eventListeners() {
