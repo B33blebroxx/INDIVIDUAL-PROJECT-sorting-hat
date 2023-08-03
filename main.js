@@ -25,21 +25,21 @@ const students = [
     name: 'Draco Malfoy',
     house: 'Slytherin',
     isExpelled: false,
-    houseImg: 'https://logos-world.net/wp-content/uploads/2022/02/Slytherin-Symbol-700x394.png'
+    houseImg: 'https://halfmoonbay.eu/cdn/shop/products/PBADHP02.jpg?v=1646131497'
   },
   {
     id: 5,
     name: 'Vincent Crabbe',
     house: 'Slytherin',
     isExpelled: false,
-    houseImg: 'https://logos-world.net/wp-content/uploads/2022/02/Slytherin-Symbol-700x394.png'
+    houseImg: 'https://halfmoonbay.eu/cdn/shop/products/PBADHP02.jpg?v=1646131497'
   },
   {
     id: 6,
     name: 'Gregory Goyle',
     house: 'Slytherin',
     isExpelled: false,
-    houseImg:'https://logos-world.net/wp-content/uploads/2022/02/Slytherin-Symbol-700x394.png'
+    houseImg:'https://halfmoonbay.eu/cdn/shop/products/PBADHP02.jpg?v=1646131497'
   },
   {
     id: 7,
@@ -57,17 +57,31 @@ const students = [
   },
   {
     id: 9,
-    name: 'Cedric Diggory',
-    house: 'Hufflepuff',
+    name: 'Rowina Ravenclaw',
+    house: 'Ravenclaw',
     isExpelled: false,
-    houseImg: 'https://simg.nicepng.com/png/small/43-439104_hufflepuff-crest-harry-potter-banner-harry-potter-hufflepuff.png'
+    houseImg: 'https://www.seekpng.com/png/detail/184-1840811_ravenclaw-crest-harry-potter-harry-potter-ravenclaw-house.png'
   },
   {
     id: 10,
+    name: 'Cedric Diggory',
+    house: 'Hufflepuff',
+    isExpelled: false,
+    houseImg: 'https://www.partyrama.co.uk/wp-content/plugins/partyrama-ecommerce-pro/includes/pro-images/prod-img/default/1st-hufflepuff-emblem-wall-cut-out-harry-potter-wizarding-world-gallery-view-image.jpg'
+  },
+  {
+    id: 11,
     name: 'Ernie Macmillan',
     house: 'Hufflepuff',
     isExpelled: false,
-    houseImg: 'https://simg.nicepng.com/png/small/43-439104_hufflepuff-crest-harry-potter-banner-harry-potter-hufflepuff.png'
+    houseImg: 'https://www.partyrama.co.uk/wp-content/plugins/partyrama-ecommerce-pro/includes/pro-images/prod-img/default/1st-hufflepuff-emblem-wall-cut-out-harry-potter-wizarding-world-gallery-view-image.jpg'
+  },
+  {
+    id:12,
+    name:'Susan Bones',
+    house:'Hufflepuff',
+    isExpelled: false,
+    houseImg: 'https://www.partyrama.co.uk/wp-content/plugins/partyrama-ecommerce-pro/includes/pro-images/prod-img/default/1st-hufflepuff-emblem-wall-cut-out-harry-potter-wizarding-world-gallery-view-image.jpg'
   }
   ]
 
@@ -161,7 +175,7 @@ const sortStudent = () => {
 
 }
 
-//Assigns house image depending on random house selection
+// Assigns house image depending on random house selection
 // const houseImg = (e) => {
 //   if (random)
 // }
@@ -214,9 +228,19 @@ function eventListeners() {
         houseImg: ''
       }
      
-      students.push(newStudentObj)
+      if (newStudentObj.house === 'Gryffindor'){
+      newStudentObj.houseImg += 'https://i.pinimg.com/originals/44/d4/5f/44d45f5786e8371255e8332e8bc456c5.jpg'
+     }else if (newStudentObj.house === 'Slytherin') {
+      newStudentObj.houseImg += 'https://halfmoonbay.eu/cdn/shop/products/PBADHP02.jpg?v=1646131497'
+     } else if (newStudentObj.house === 'Ravenclaw') {
+      newStudentObj.houseImg += 'https://www.seekpng.com/png/detail/184-1840811_ravenclaw-crest-harry-potter-harry-potter-ravenclaw-house.png'
+     } else if (newStudentObj === 'Hufflepuff') {
+      newStudentObj += 'https://www.partyrama.co.uk/wp-content/plugins/partyrama-ecommerce-pro/includes/pro-images/prod-img/default/1st-hufflepuff-emblem-wall-cut-out-harry-potter-wizarding-world-gallery-view-image.jpg'
+     }
+     
+     students.push(newStudentObj)
       studentsOnDom(students)
-      form.reset
+      form.reset()
     
     }
   )
