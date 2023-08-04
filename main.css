@@ -21,15 +21,29 @@ body {
 
 #card-container {
   display: flex;
-  flex-flow: row wrap;
-}
+  flex-wrap: wrap;
+  flex: 1;
+  max-height: 430px;
+  justify-content: space-evenly;
+  
+  text-align: center;
+  }
 
 #div-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-content: space-evenly;
 }
 
 #death-eaters {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1;
+  max-height: 430px;
+  justify-content: space-evenly;
+  text-align: center;
+  font-family: 'Megrim', cursive;
+  font-weight: bold;
+  font-size: larger;
 }

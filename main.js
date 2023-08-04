@@ -186,7 +186,7 @@ function sortingForm() {
 function deathEatersOnDom(array) {
   let domString = "";
   for (const student of array) {
-    domString += `<div class="card" style="width: 18rem;">
+    domString += `<div class="card" style="width: 18rem; background-color: #000000";>
     <img src="https://insighteditions.com/cdn/shop/products/86453-103473-interior-2_grande.jpg?v=1649116060" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">${student.name}</h5>
@@ -326,4 +326,3 @@ startApp = () => {
 };
 
 startApp();
-console.log();
