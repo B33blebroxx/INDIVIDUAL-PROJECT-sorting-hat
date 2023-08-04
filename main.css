@@ -8,6 +8,7 @@ body {
   background: url("https://m.media-amazon.com/images/I/719lgfkEyUL.jpg") no-repeat
     center center fixed;
   background-size: cover;
+  text-align: center;
 }
 #app {
   opacity: 0.75;
