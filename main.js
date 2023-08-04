@@ -94,7 +94,7 @@ const students = [
     house: "Hufflepuff",
     isExpelled: false,
     houseImg:
-    "https://www.partyrama.co.uk/wp-content/plugins/partyrama-ecommerce-pro/includes/pro-images/prod-img/default/1st-hufflepuff-emblem-wall-cut-out-harry-potter-wizarding-world-gallery-view-image.jpg",
+      "https://www.partyrama.co.uk/wp-content/plugins/partyrama-ecommerce-pro/includes/pro-images/prod-img/default/1st-hufflepuff-emblem-wall-cut-out-harry-potter-wizarding-world-gallery-view-image.jpg",
   },
 ];
 
@@ -109,8 +109,7 @@ const formBtn = document.querySelector("#form-btn");
 const expelBtn = document.querySelector("#expel-btn");
 const sortBtn = document.querySelector("#sort-btn");
 const houses = ["Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff"];
-const deathEaters = []
-
+const deathEaters = [];
 
 //Renders HTML to selected div id
 const renderToDom = (divId, html) => {
@@ -135,8 +134,8 @@ function btnRow() {
     <button type="button" id="huff-btn" class="btn btn-warning">
       Hufflepuff
     </button>
-    <button type="button" id="death-btn" class="btn btn-dark">
-      Death Eaters
+    <button type="button" id="all-btn" class="btn btn-dark">
+      All Students
     </button>`;
 
   renderToDom("#btn-row", domString);
@@ -182,7 +181,6 @@ function deathEatersOnDom(array) {
     <div class="card-body">
       <h5 class="card-title">${student.name}</h5>
       <p class="card-text">${student.house}</p>
-      <a href="#" id='expel-btn' class="btn btn-primary">Expel</a>
     </div>
   </div>`;
   }
@@ -199,7 +197,7 @@ function studentsOnDom(array) {
     <div class="card-body">
       <h5 class="card-title">${student.name}</h5>
       <p class="card-text">${student.house}</p>
-      <a href="#" id='expel-btn' class="btn btn-primary">Expel</a>
+      <a href="#" id='expel-btn--${student.id}' class="btn btn-primary">Expel</a>
     </div>
   </div>`;
   }
@@ -249,23 +247,27 @@ function eventListeners() {
       );
       studentsOnDom(huffStudents);
     }
-    if (e.target.id === "death-btn") {
-      const deathEaters = students.filter(
-        (student) => student.isExpelled === true
-      );
-      studentsOnDom(deathEaters);
+    if (e.target.id === "all-btn") {
+      studentsOnDom(students);
     }
   });
 
-//expels students and adds them to death eaters array
-  cards.addEventListener("click", (e) => {
+  //expels students and adds them to death eaters array
+  divs.addEventListener("click", (e) => {
     if (e.target.id.includes("expel-btn")) {
-      const [, id] = e.target.id.split("--");
-      const index = students.findIndex((student) => student.id === Number(id));
-      expelledStudents = students.splice(index, 1)[0];
+      const [, studentId] = e.target.id.split("--");
+
+      const index = students.findIndex((student) => student.id === Number(studentId));
+
+      let expelledStudents = students.splice(index, 1)[0];
+
       deathEaters.push(expelledStudents);
-      studentsOnDom(students);
+
       deathEatersOnDom(deathEaters);
+
+      studentsOnDom(students);
+
+      
     }
   });
 
@@ -282,7 +284,7 @@ function eventListeners() {
       isExpelled: false,
       houseImg: "",
     };
-    
+
     //Dynamically renders specific house picture  to new student depending on assigned house
     if (newStudentObj.house === "Gryffindor") {
       newStudentObj.houseImg +=
@@ -314,4 +316,4 @@ startApp = () => {
 };
 
 startApp();
-console.log()
+console.log();
