@@ -162,6 +162,7 @@ function sortingHat() {
     <div class="card-body">
       <h5 class="card-title">Welcome To Hogwarts School of Witchcraft and Wizardry! </h5>
       <p class="card-text">I am the Sorting Hat! Please press the button to start the sorting process!</p>
+      <img src="https://nicedecal.com/wp-content/uploads/2022/07/Sorting-Hat-Harry-Potter-Decal-Sticker__95210.1511154723_6647fe5d-1f7b-4350-8e34-f31773ebaf40.jpg">
       <a href="#" id="form-btn" class="btn btn-primary">Start the Sorting! </a>
     </div>
   </div>`;
