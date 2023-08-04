@@ -23,3 +23,13 @@ body {
   display: flex;
   flex-flow: row wrap;
 }
+
+#div-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#death-eaters {
+  display: flex;
+  flex-direction: row;
+}
