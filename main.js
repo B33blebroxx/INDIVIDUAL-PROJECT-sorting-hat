@@ -98,6 +98,16 @@ const students = [
   },
 ];
 
+const deathEaters = [
+  {
+    id: 1,
+    name: 'Lord Voldemort',
+    house: 'Death Eaters',
+    isExpelled: true,
+    houseImg: 'https://static.wikia.nocookie.net/villains/images/f/f2/Death_Eater_Mark.jpg/revision/latest?cb=20180905013729'
+  }
+]
+
 //Stored variables for DOM manipulation
 const app = document.querySelector("#app");
 const divs = document.querySelector("#div-container");
@@ -109,7 +119,7 @@ const formBtn = document.querySelector("#form-btn");
 const expelBtn = document.querySelector("#expel-btn");
 const sortBtn = document.querySelector("#sort-btn");
 const houses = ["Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff"];
-const deathEaters = [];
+
 
 //Renders HTML to selected div id
 const renderToDom = (divId, html) => {
@@ -177,10 +187,10 @@ function deathEatersOnDom(array) {
   let domString = "";
   for (const student of array) {
     domString += `<div class="card" style="width: 18rem;">
-    <img src="${student.houseImg}" class="card-img-top" alt="...">
+    <img src="https://insighteditions.com/cdn/shop/products/86453-103473-interior-2_grande.jpg?v=1649116060" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">${student.name}</h5>
-      <p class="card-text">${student.house}</p>
+      <p class="card-text"> Death Eaters </p>
     </div>
   </div>`;
   }
