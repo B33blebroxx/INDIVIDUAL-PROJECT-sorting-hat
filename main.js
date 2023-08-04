@@ -94,18 +94,23 @@ const students = [
     house: "Hufflepuff",
     isExpelled: false,
     houseImg:
-      "https://www.partyrama.co.uk/wp-content/plugins/partyrama-ecommerce-pro/includes/pro-images/prod-img/default/1st-hufflepuff-emblem-wall-cut-out-harry-potter-wizarding-world-gallery-view-image.jpg",
+    "https://www.partyrama.co.uk/wp-content/plugins/partyrama-ecommerce-pro/includes/pro-images/prod-img/default/1st-hufflepuff-emblem-wall-cut-out-harry-potter-wizarding-world-gallery-view-image.jpg",
   },
 ];
 
 //Stored variables for DOM manipulation
 const app = document.querySelector("#app");
+const divs = document.querySelector("#div-container");
+const cards = document.querySelector("#card-container");
+const voldyCard = document.querySelector("#death-eaters");
 const form = document.querySelector("form");
 const houseBtns = document.querySelector("#btn-row");
 const formBtn = document.querySelector("#form-btn");
 const expelBtn = document.querySelector("#expel-btn");
 const sortBtn = document.querySelector("#sort-btn");
 const houses = ["Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff"];
+const deathEaters = []
+
 
 //Renders HTML to selected div id
 const renderToDom = (divId, html) => {
@@ -168,6 +173,23 @@ function sortingForm() {
   renderToDom("form", domString);
 }
 
+//Function to render Death Eater card
+function deathEatersOnDom(array) {
+  let domString = "";
+  for (const student of array) {
+    domString += `<div class="card" style="width: 18rem;">
+    <img src="${student.houseImg}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">${student.name}</h5>
+      <p class="card-text">${student.house}</p>
+      <a href="#" id='expel-btn' class="btn btn-primary">Expel</a>
+    </div>
+  </div>`;
+  }
+
+  renderToDom("#death-eaters", domString);
+}
+
 // Function to render student cards to the DOM
 function studentsOnDom(array) {
   let domString = "";
@@ -195,13 +217,13 @@ function filterByHouse(house) {
 
 //Event Listeners
 function eventListeners() {
-// Renders sort form on button push 
+  // Renders sort form on button push
   app.addEventListener("click", (e) => {
     if (e.target.id === "form-btn") {
       sortingForm();
     }
   });
-//filters students based on house
+  //filters students based on house
   houseBtns.addEventListener("click", (e) => {
     if (e.target.id === "gryff-btn") {
       const gryffHouse = students.filter(
@@ -235,12 +257,24 @@ function eventListeners() {
     }
   });
 
-//adds student object, sorts, dynamically assigns house picture, and pushes all to array
+//expels students and adds them to death eaters array
+  cards.addEventListener("click", (e) => {
+    if (e.target.id.includes("expel-btn")) {
+      const [, id] = e.target.id.split("--");
+      const index = students.findIndex((student) => student.id === Number(id));
+      expelledStudents = students.splice(index, 1)[0];
+      deathEaters.push(expelledStudents);
+      studentsOnDom(students);
+      deathEatersOnDom(deathEaters);
+    }
+  });
+
+  //adds student object, sorts, dynamically assigns house picture, and pushes all to array
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-//randomizes house assigned to new student
+    //randomizes house assigned to new student
     const randomize = Math.floor(Math.random() * houses.length);
-//assigns student properties to name input into form
+    //assigns student properties to name input into form
     const newStudentObj = {
       id: students.length + 1,
       name: document.querySelector("#name").value,
@@ -248,7 +282,8 @@ function eventListeners() {
       isExpelled: false,
       houseImg: "",
     };
-//Dynamically renders specific house picture  to new student depending on assigned house
+    
+    //Dynamically renders specific house picture  to new student depending on assigned house
     if (newStudentObj.house === "Gryffindor") {
       newStudentObj.houseImg +=
         "https://i.pinimg.com/originals/44/d4/5f/44d45f5786e8371255e8332e8bc456c5.jpg";
@@ -262,7 +297,7 @@ function eventListeners() {
       newStudentObj +=
         "https://www.partyrama.co.uk/wp-content/plugins/partyrama-ecommerce-pro/includes/pro-images/prod-img/default/1st-hufflepuff-emblem-wall-cut-out-harry-potter-wizarding-world-gallery-view-image.jpg";
     }
-//pushes new object to the student array
+    //pushes new object to the student array
     students.push(newStudentObj);
     studentsOnDom(students);
     form.reset();
@@ -274,7 +309,9 @@ startApp = () => {
   btnRow();
   sortingHat();
   studentsOnDom(students);
+  deathEatersOnDom(deathEaters);
   eventListeners();
 };
 
 startApp();
+console.log()
