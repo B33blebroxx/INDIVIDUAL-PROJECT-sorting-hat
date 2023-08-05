@@ -239,27 +239,32 @@ function eventListeners() {
         (student) => student.house === "Gryffindor"
       );
       studentsOnDom(gryffHouse);
+      deathEatersOnDom('')
     }
     if (e.target.id === "raven-btn") {
       const ravenHouse = students.filter(
         (student) => student.house === "Ravenclaw"
       );
       studentsOnDom(ravenHouse);
+      deathEatersOnDom('')
     }
     if (e.target.id === "slyth-btn") {
       const slythStudents = students.filter(
         (student) => student.house === "Slytherin"
       );
       studentsOnDom(slythStudents);
+      deathEatersOnDom('')
     }
     if (e.target.id === "huff-btn") {
       const huffStudents = students.filter(
         (student) => student.house === "Hufflepuff"
       );
       studentsOnDom(huffStudents);
+      deathEatersOnDom('')
     }
     if (e.target.id === "all-btn") {
       studentsOnDom(students);
+      deathEatersOnDom(deathEaters)
     }
   });
 
