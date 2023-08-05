@@ -187,11 +187,11 @@ function sortingForm() {
 function deathEatersOnDom(array) {
   let domString = "";
   for (const student of array) {
-    domString += `<div class="card" style="width: 18rem; background-color: #000000";>
-    <img src="https://insighteditions.com/cdn/shop/products/86453-103473-interior-2_grande.jpg?v=1649116060" class="card-img-top" alt="...">
+    domString += `<div id='eaters' class="card" style="width: 18rem; background-color: #000000";>
     <div class="card-body">
-      <h5 class="card-title">${student.name}</h5>
-      <p class="card-text"> Death Eaters </p>
+    <p class="card-text"> Death Eaters </p>
+    <img src="https://insighteditions.com/cdn/shop/products/86453-103473-interior-2_grande.jpg?v=1649116060" class="card-img-top" alt="...">
+    <h5 class="card-title">${student.name}</h5>
     </div>
   </div>`;
   }
@@ -239,27 +239,32 @@ function eventListeners() {
         (student) => student.house === "Gryffindor"
       );
       studentsOnDom(gryffHouse);
+      deathEatersOnDom('')
     }
     if (e.target.id === "raven-btn") {
       const ravenHouse = students.filter(
         (student) => student.house === "Ravenclaw"
       );
       studentsOnDom(ravenHouse);
+      deathEatersOnDom('')
     }
     if (e.target.id === "slyth-btn") {
       const slythStudents = students.filter(
         (student) => student.house === "Slytherin"
       );
       studentsOnDom(slythStudents);
+      deathEatersOnDom('')
     }
     if (e.target.id === "huff-btn") {
       const huffStudents = students.filter(
         (student) => student.house === "Hufflepuff"
       );
       studentsOnDom(huffStudents);
+      deathEatersOnDom('')
     }
     if (e.target.id === "all-btn") {
       studentsOnDom(students);
+      deathEatersOnDom(deathEaters)
     }
   });
 

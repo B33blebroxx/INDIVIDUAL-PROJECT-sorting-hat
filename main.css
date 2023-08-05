@@ -54,6 +54,10 @@ body {
   font-size: larger;
 }
 
+#eaters {
+  color: white;
+}
+
 form {
   color: white;
 }
