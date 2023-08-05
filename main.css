@@ -5,18 +5,21 @@ head {
 
 body {
   font-family: "Cinzel", serif;
-  background: url("https://m.media-amazon.com/images/I/719lgfkEyUL.jpg") no-repeat
-    center center fixed;
+  background: url("https://m.media-amazon.com/images/I/719lgfkEyUL.jpg")
+    no-repeat center center fixed;
   background-size: cover;
   text-align: center;
 }
 #app {
-  opacity: 0.75;
   background-color: #0000;
   color: #fff;
+  background: rgba(255, 255, 255, 0);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  border-radius: 10px;
 }
 #form-container {
-  color: white;
   padding-top: 12px;
 }
 
@@ -26,9 +29,13 @@ body {
   flex: 1;
   max-height: 430px;
   justify-content: space-evenly;
-  
   text-align: center;
-  }
+  background: rgba(255, 255, 255, 0);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  border-radius: 10px;
+}
 
 #div-container {
   display: flex;
@@ -44,7 +51,20 @@ body {
   max-height: 430px;
   justify-content: space-evenly;
   text-align: center;
-  font-family: 'Megrim', cursive;
+  font-family: "Megrim", cursive;
   font-weight: bold;
   font-size: larger;
+}
+
+form {
+  color: white;
+}
+
+#sorting-hat {
+  background: rgba(255, 255, 255, 0);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  border-radius: 10px;
+  color: white;
 }
