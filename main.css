@@ -11,13 +11,11 @@ body {
   text-align: center;
 }
 #app {
-  background-color: #0000;
-  color: #fff;
   background: rgba(255, 255, 255, 0);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0);
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
-  border-radius: 10px;
+  border-radius: 0px;
 }
 #form-container {
   padding-top: 12px;
@@ -34,7 +32,7 @@ body {
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0);
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
-  border-radius: 10px;
+  border-radius: 0px;
 }
 
 #div-container {
@@ -65,6 +63,6 @@ form {
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0);
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
-  border-radius: 10px;
+  border-radius: 0px;
   color: white;
 }
