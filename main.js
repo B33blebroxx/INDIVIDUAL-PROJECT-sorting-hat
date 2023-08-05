@@ -101,12 +101,13 @@ const students = [
 const deathEaters = [
   {
     id: 1,
-    name: 'Lord Voldemort',
-    house: 'Death Eaters',
+    name: "Lord Voldemort",
+    house: "Death Eaters",
     isExpelled: true,
-    houseImg: 'https://static.wikia.nocookie.net/villains/images/f/f2/Death_Eater_Mark.jpg/revision/latest?cb=20180905013729'
-  }
-]
+    houseImg:
+      "https://static.wikia.nocookie.net/villains/images/f/f2/Death_Eater_Mark.jpg/revision/latest?cb=20180905013729",
+  },
+];
 
 //Stored variables for DOM manipulation
 const app = document.querySelector("#app");
@@ -119,7 +120,6 @@ const formBtn = document.querySelector("#form-btn");
 const expelBtn = document.querySelector("#expel-btn");
 const sortBtn = document.querySelector("#sort-btn");
 const houses = ["Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff"];
-
 
 //Renders HTML to selected div id
 const renderToDom = (divId, html) => {
@@ -155,14 +155,14 @@ function btnRow() {
 function sortingHat() {
   let domString = "";
 
-  domString += `<div class="card">
+  domString += `<div class="card" id='sorting-hat'>
     <div class="card-header">
       Greetings!
     </div>
     <div class="card-body">
       <h5 class="card-title">Welcome To Hogwarts School of Witchcraft and Wizardry! </h5>
       <p class="card-text">I am the Sorting Hat! Please press the button to start the sorting process!</p>
-      <img src="https://nicedecal.com/wp-content/uploads/2022/07/Sorting-Hat-Harry-Potter-Decal-Sticker__95210.1511154723_6647fe5d-1f7b-4350-8e34-f31773ebaf40.jpg">
+      <img src="https://www.pngkey.com/png/full/106-1067907_sorting-hat-png-harry-potter-sorting-hat-png.png">
       <a href="#" id="form-btn" class="btn btn-primary">Start the Sorting! </a>
     </div>
   </div>`;
@@ -268,7 +268,9 @@ function eventListeners() {
     if (e.target.id.includes("expel-btn")) {
       const [, studentId] = e.target.id.split("--");
 
-      const index = students.findIndex((student) => student.id === Number(studentId));
+      const index = students.findIndex(
+        (student) => student.id === Number(studentId)
+      );
 
       let expelledStudents = students.splice(index, 1)[0];
 
@@ -277,8 +279,6 @@ function eventListeners() {
       deathEatersOnDom(deathEaters);
 
       studentsOnDom(students);
-
-      
     }
   });
 
